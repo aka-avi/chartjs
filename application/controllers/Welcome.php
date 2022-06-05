@@ -47,4 +47,10 @@ header(base_url('index.php/welcome/login'));
 	public function get_user(){
 		$this->load->view('count');
 	}
+
+	public function get_user_ct(){
+		$time = $_POST['time'];
+		$role = $_POST['role'];
+		echo get_count_user($role, $time);
+	}
 }

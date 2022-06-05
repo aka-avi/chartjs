@@ -29,14 +29,14 @@ function get_count(){
    return $zzz;
 }
 
-function get_count_user(){
+function get_count_user($role, $time){
    $m = date('m') + 1;
    $m--;
    $months = ['jan', 'feb', 'mar', 'apr', 'may', 'june', 'july', 'aug', 'sep', 'oct', 'nov', 'dec'];
    $y = date('Y');
-   for($i = 0; $i < 9; $i++){
+   for($i = 0; $i < $time; $i++){
       $CI =& get_instance();
-      $users[$months[$m-1]] = $CI->db->select("count(id) as users")->where("Month(created_at) = $m AND Year(created_at) = $y")->get('users')->row_array()['users'];
+      $users[$months[$m-1]] = $CI->db->select("count(id) as users")->where("role = $role AND Month(created_at) = $m AND Year(created_at) = $y")->get('users')->row_array()['users'];
       // return $CI->db->last_query();
       $m--;
       if($m == 0) {
